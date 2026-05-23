@@ -210,22 +210,15 @@ public class GameController {
      * - Trim playerName and difficulty.
      */
     public static String buildJoinLogMessage(String playerName, String difficulty, boolean ranked) {
-        String joinPlayerMessage;
-        String joinDifficultyMessage;
-        String joinRankedMessage;
-        
-        if (playerName == null || playerName.trim().isEmpty()) { joinPlayerMessage = "Player"; }
-        else { joinPlayerMessage = playerName.trim(); }
 
-        if (difficulty == null || difficulty.trim().isEmpty()) { joinDifficultyMessage = "Normal"; }
-        else { joinDifficultyMessage = difficulty.trim(); }
+        if (playerName == null || playerName.trim().isEmpty()) { playerName = "Player"; }
 
-        if (ranked) { joinRankedMessage = "ranked"; }
-        else { joinRankedMessage = "casual"; }
+        if (difficulty == null || difficulty.trim().isEmpty()) { difficulty = "Normal"; }
 
-        return "Joining " + joinRankedMessage + " match as " 
-            + joinPlayerMessage + " on " 
-            + joinDifficultyMessage + " difficulty...";
+
+        return "Joining " + (ranked ? "ranked": "casual") + " match as "
+            + playerName.trim() + " on "
+            + difficulty.trim() + " difficulty...";
     }
 
     /**

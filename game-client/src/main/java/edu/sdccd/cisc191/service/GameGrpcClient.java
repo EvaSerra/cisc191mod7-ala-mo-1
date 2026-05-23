@@ -51,18 +51,14 @@ public class GameGrpcClient {
      * - Preserve the ranked value.
      */
     public static JoinMatchRequest buildJoinMatchRequest(String playerName, String difficulty, boolean ranked) {
-        String matchPlayerName;
-        String matchDifficultyName;
 
-        if (playerName == null || playerName.trim().isEmpty()) { matchPlayerName = "Player"; }
-        else { matchPlayerName = playerName.trim(); }
+        if (playerName == null || playerName.trim().isEmpty()) { playerName = "Player"; }
 
-        if (difficulty == null || difficulty.trim().isEmpty()) { matchDifficultyName = "Normal"; }
-        else { matchDifficultyName = difficulty.trim(); }
+        if (difficulty == null || difficulty.trim().isEmpty()) { difficulty = "Normal"; }
 
         return JoinMatchRequest.newBuilder()
-                .setPlayerName(matchPlayerName)
-                .setDifficulty(matchDifficultyName)
+                .setPlayerName(playerName.trim())
+                .setDifficulty(difficulty.trim())
                 .setRanked(ranked)
                 .build();
     }

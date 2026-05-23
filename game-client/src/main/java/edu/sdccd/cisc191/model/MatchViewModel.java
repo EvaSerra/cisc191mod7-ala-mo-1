@@ -91,17 +91,14 @@ public class MatchViewModel {
         if (getMatchId() == null || getMatchId().isEmpty()) { return "No match"; }
         
         String matchDifficulty;
-        String matchRank;
 
         if (difficulty == null || difficulty.trim().isEmpty()) { matchDifficulty = "Normal"; }
         else { matchDifficulty = difficulty.trim(); }
 
-        if (ranked == true) { matchRank = "ranked";} 
-        else { matchRank = "casual"; }
         
         return ("Match " + getMatchId() + ": "
             + getPlayer().getName() + " vs " + getOpponent().getName()
-            + " (" + matchDifficulty + ", " + matchRank + ")");
+            + " (" + matchDifficulty + ", " + (ranked ? "ranked": "casual") + ")");
     }
 
     public synchronized void resetLocalState() {

@@ -83,30 +83,20 @@ public class GameServiceImpl extends GameServiceGrpc.GameServiceImplBase {
             String difficulty,
             boolean ranked
     ) {
-        String joinSummaryPlayerName;
-        String joinSummaryOpponentName;
-        String joinSummaryDifficulty;
-        String joinSummaryRanked;
-        
+
         if (matchId == null || matchId.trim().isEmpty()) { return "No match"; }
 
-        if (playerName == null || playerName.trim().isEmpty()) { joinSummaryPlayerName = "Player"; }
-        else { joinSummaryPlayerName = playerName.trim(); }
+        if (playerName == null || playerName.trim().isEmpty()) { playerName = "Player"; }
 
-        if (opponentName == null || opponentName.trim().isEmpty()) { joinSummaryOpponentName = "Bot"; }
-        else { joinSummaryOpponentName = opponentName.trim(); }
+        if (opponentName == null || opponentName.trim().isEmpty()) { opponentName = "Bot"; }
 
-        if (difficulty == null || difficulty.trim().isEmpty()) { joinSummaryDifficulty = "Normal"; }
-        else { joinSummaryDifficulty = difficulty.trim(); }
-
-        if (ranked == true) { joinSummaryRanked = "ranked"; }
-        else { joinSummaryRanked = "casual"; }
+        if (difficulty == null || difficulty.trim().isEmpty()) { difficulty = "Normal"; }
         
         return "Match " + matchId + ": " 
-                + joinSummaryPlayerName + " vs "
-                + joinSummaryOpponentName + " ("
-                + joinSummaryDifficulty + ", "
-                + joinSummaryRanked + ")";
+                + playerName.trim() + " vs "
+                + opponentName.trim() + " ("
+                + difficulty.trim() + ", "
+                + (ranked ? "ranked": "casual") + ")";
     }
 
     @Override
